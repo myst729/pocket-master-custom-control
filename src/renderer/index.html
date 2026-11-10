@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:;"
+    />
+    <title>Pocket Master Custom Control</title>
+    <link rel="icon" type="image/png" href="../assets/icon.png" sizes="512x512" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <section class="bar">
+        <div class="row">
+          <span id="statusDot" class="dot"></span>
+          <span id="statusText">正在查找设备…</span>
+          <span class="spacer"></span>
+          <button id="portBtn" class="ghost" hidden>选择设备</button>
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="row">
+          <button id="pingBtn" hidden disabled>Ping</button>
+          <button id="getBtn" disabled>读取配置</button>
+          <button id="resetBtn" disabled>恢复默认</button>
+          <button id="saveBtn" class="primary" disabled>保存修改</button>
+          <span id="dirtyHint" class="hint"></span>
+        </div>
+        <p class="note">可选功能与取值来自 Sonicake Pocket Master 用户手册的 MIDI 对照表。参数写入后<strong>需要重启设备</strong>才会生效。</p>
+      </section>
+
+      <section class="card">
+        <table id="keyTable">
+          <thead>
+            <tr>
+              <th class="col-key">按键</th>
+              <th class="col-fn">功能</th>
+              <th class="col-val">取值</th>
+            </tr>
+          </thead>
+          <tbody id="keyBody"></tbody>
+        </table>
+      </section>
+
+      <section id="logCard" class="card log-card">
+        <div class="row">
+          <h2>日志</h2>
+          <span class="spacer"></span>
+          <button id="clearLogBtn" class="ghost">清空</button>
+          <button id="hideLogBtn" class="ghost icon" title="隐藏日志" aria-label="隐藏日志">✕</button>
+        </div>
+        <pre id="log"></pre>
+      </section>
+    </main>
+
+    <div id="modal" class="modal" hidden>
+      <div class="modal-box">
+        <h2 id="modalTitle">确认操作</h2>
+        <p id="modalText"></p>
+        <div class="row modal-actions">
+          <button id="modalCancel" class="ghost">取消</button>
+          <button id="modalOk" class="primary">确定</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../core/protocol.js"></script>
+    <script src="../core/client.js"></script>
+    <script src="../transport/index.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

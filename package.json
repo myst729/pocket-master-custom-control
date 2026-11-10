@@ -1,0 +1,54 @@
+{
+  "name": "pocket-master-custom-control",
+  "version": "1.0.0",
+  "description": "ESP32C3 BLE MIDI Control for Sonicake Pocket Master",
+  "author": "Leo Deng",
+  "main": "src/main/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node scripts/dev-server.js",
+    "dev": "node scripts/dev-server.js",
+    "pub": "npm run build-web -- docs",
+    "build-web": "node scripts/build-web.js",
+    "build-electron": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^45.2.3",
+    "electron-builder": "^26.18.0"
+  },
+  "dependencies": {
+    "serialport": "^13.0.0"
+  },
+  "build": {
+    "appId": "com.myst729.pocket-master-custom-control",
+    "productName": "Pocket Master Custom Control",
+    "npmRebuild": false,
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "dist-electron"
+    },
+    "win": {
+      "icon": "src/assets/icon.png",
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "mac": {
+      "icon": "src/assets/icon.png",
+      "category": "public.app-category.music",
+      "target": [
+        {
+          "target": "zip",
+          "arch": ["arm64", "x64"]
+        }
+      ]
+    }
+  }
+}
